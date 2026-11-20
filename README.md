@@ -7,7 +7,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@alexh-r/learnworlds-sdk?logo=npm&color=cb3837)](https://www.npmjs.com/package/@alexh-r/learnworlds-sdk)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)](#typescript)
-[![Node](https://img.shields.io/badge/node-%E2%89%A518.17-339933?logo=node.js&logoColor=white)](#installation)
+[![Node](https://img.shields.io/badge/node-%E2%89%A520-339933?logo=node.js&logoColor=white)](#installation)
 [![Bun](https://img.shields.io/badge/bun-supported-fbf0df?logo=bun&logoColor=black)](https://bun.sh)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](package.json)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -44,7 +44,7 @@ npm install @alexh-r/learnworlds-sdk
 pnpm add @alexh-r/learnworlds-sdk
 ```
 
-The package is **ESM only** and needs a runtime with a global `fetch` and `URL.canParse` (Node 18.17+, Bun, Deno).
+The package is **ESM only** and needs a runtime with a global `fetch` and `URL.canParse` (Node 20+, Bun, Deno).
 
 ## Quick start
 
