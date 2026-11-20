@@ -7,7 +7,7 @@ import type { Installment } from "./installments.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const installments = await lw.installments.getActive();
  * ```
  */

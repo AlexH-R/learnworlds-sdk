@@ -2,6 +2,9 @@
 
 **A typed, zero-dependency TypeScript client for the [LearnWorlds](https://www.learnworlds.com) API v2**
 
+> [!NOTE]
+> This is an **unofficial** SDK. It is not affiliated with, endorsed or sponsored by LearnWorlds. LearnWorlds is a trademark of its respective owner.
+
 [![npm version](https://img.shields.io/npm/v/@alexh-r/learnworlds-sdk?logo=npm&color=cb3837)](https://www.npmjs.com/package/@alexh-r/learnworlds-sdk)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white)](#typescript)
 [![Node](https://img.shields.io/badge/node-%E2%89%A518.17-339933?logo=node.js&logoColor=white)](#installation)
@@ -46,9 +49,9 @@ The package is **ESM only** and needs a runtime with a global `fetch` and `URL.c
 You need your school URL plus a **Client ID** and **Client Secret** from the LearnWorlds admin panel (*Settings → Developers → API*).
 
 ```ts
-import { LearnWorlds } from "@alexh-r/learnworlds-sdk";
+import { LearnWorldsClient } from "@alexh-r/learnworlds-sdk";
 
-const lw = new LearnWorlds({
+const lw = new LearnWorldsClient({
 	baseUrl: process.env.LW_BASE_URL!, // e.g. https://myschool.learnworlds.com/admin/api
 	clientId: process.env.LW_CLIENT_ID!,
 	clientSecret: process.env.LW_CLIENT_SECRET!,
@@ -69,7 +72,7 @@ await lw.users.enroll(user.id, {
 
 ## Configuration
 
-`new LearnWorlds(config)` accepts:
+`new LearnWorldsClient(config)` accepts:
 
 | Option         | Type       | Required | Description |
 | -------------- | ---------- | :------: | ----------- |
@@ -155,7 +158,7 @@ const status = await lw.asynchronousActions.get(task.job_id);
 Pass your own `fetch` to add logging, retries, a proxy, or to mock the API in tests:
 
 ```ts
-const lw = new LearnWorlds({
+const lw = new LearnWorldsClient({
 	baseUrl,
 	clientId,
 	clientSecret,
@@ -353,9 +356,9 @@ await lw.users.updateTags("student@example.com", { tags: ["vip"], action: "attac
 | Method | Endpoint | Description |
 | ------ | -------- | ----------- |
 | `getCourseAnalytics(id)` | `GET courses/{id}/analytics` | Analytics of a course. |
-| `getLearningActivityAnalytics(id, unitId)` | `GET courses/{id}/units/{unitId}` | Analytics of a learning activity. |
+| `getLearningActivityAnalytics(id, unitId)` | `GET courses/{id}/units/{unitId}/analytics` | Analytics of a learning activity. |
 | `getUserProgress(id)` | `GET users/{id}/progress` | Progress of a user in all their courses. |
-| `getUserProgressPerCourse(id, courseId)` | `GET users/{id}/courses/{courseId}` | Progress of a user in one course. |
+| `getUserProgressPerCourse(id, courseId)` | `GET users/{id}/courses/{courseId}/progress` | Progress of a user in one course. |
 
 ### Event logs (`lw.eventLogs`)
 
@@ -401,7 +404,7 @@ async function firstPage(): Promise<Paginated<User>> {
 }
 ```
 
-The `LearnWorldsConfig` interface is exported as well.
+The `LearnWorldsClientConfig` interface is exported as well.
 
 ## Development
 

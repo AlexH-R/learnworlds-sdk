@@ -7,7 +7,7 @@ import type { Bundle } from "./bundles.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const bundles = await lw.bundles.getAll();
  * ```
  */

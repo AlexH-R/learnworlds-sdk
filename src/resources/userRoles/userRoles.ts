@@ -6,7 +6,7 @@ import type { Role } from "./userRoles.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const userRoles = await lw.userRoles.getAll();
  * ```
  */

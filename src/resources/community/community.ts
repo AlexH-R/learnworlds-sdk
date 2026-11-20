@@ -16,7 +16,7 @@ import type {
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const spaces = await lw.community.getSpaces();
  * ```
  */

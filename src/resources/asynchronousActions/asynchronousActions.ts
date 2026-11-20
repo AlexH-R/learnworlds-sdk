@@ -6,7 +6,7 @@ import type { AsyncTaskStatus } from "./asynchronousActions.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const status = await lw.asynchronousActions.get("job_id");
  * ```
  */

@@ -1,6 +1,8 @@
 {
   "name": "@alexh-r/learnworlds-sdk",
   "version": "0.1.0",
+  "description": "Unofficial typed TypeScript SDK for the LearnWorlds API v2",
+  "keywords": ["learnworlds", "sdk", "api", "typescript", "lms"],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

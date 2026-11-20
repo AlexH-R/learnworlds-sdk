@@ -10,7 +10,7 @@ import type {
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const task = await lw.userProgress.complete("user_id", "course_id", {
  * 	send_course_complete_email: false,
  * 	units: [],

@@ -1,5 +1,5 @@
 //** Client
-export { LearnWorlds, type LearnWorldsConfig } from "./client.js";
+export { LearnWorldsClient, type LearnWorldsClientConfig } from "./client.js";
 export { LearnWorldsError } from "./errors.js";
 
 //** Shared types

@@ -6,7 +6,7 @@ import type { SchoolEvent } from "./calendar.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const events = await lw.calendar.getSchoolEvents();
  * ```
  */

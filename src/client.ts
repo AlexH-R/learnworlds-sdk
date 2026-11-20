@@ -22,7 +22,7 @@ import { UserRolesResource } from "./resources/userRoles/userRoles.js";
 import { UsersResource } from "./resources/users/users.js";
 import { UserSubscriptionsResource } from "./resources/userSubscriptions/userSubscriptions.js";
 
-export interface LearnWorldsConfig {
+export interface LearnWorldsClientConfig {
 	baseUrl: string;
 	clientId: string;
 	clientSecret: string;
@@ -38,10 +38,10 @@ export interface LearnWorldsConfig {
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * ```
  */
-export class LearnWorlds {
+export class LearnWorldsClient {
 	#http: HttpClient;
 	courses: CoursesResource;
 	reporting: ReportingResource;
@@ -68,7 +68,7 @@ export class LearnWorlds {
 	/**
 	 * @throws {LearnWorldsError} If `baseUrl`, `clientId` or `clientSecret` are missing or invalid.
 	 */
-	constructor(learnWorldsConfig: LearnWorldsConfig) {
+	constructor(learnWorldsConfig: LearnWorldsClientConfig) {
 		const { baseUrl, clientId, clientSecret, fetch } = learnWorldsConfig;
 
 		if (!baseUrl || !URL.canParse(baseUrl)) {

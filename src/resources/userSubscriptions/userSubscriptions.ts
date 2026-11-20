@@ -7,7 +7,7 @@ import type { UserSubscription } from "./userSubscriptions.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const subscriptions = await lw.userSubscriptions.getAll();
  * ```
  */

@@ -1,7 +1,7 @@
 import { describe, expect, it, mock } from "bun:test";
-import { LearnWorlds } from "../client.js";
+import { LearnWorldsClient } from "../client.js";
 
-type Call = (lw: LearnWorlds) => Promise<unknown>;
+type Call = (lw: LearnWorldsClient) => Promise<unknown>;
 
 interface Case {
 	name: string;
@@ -37,7 +37,7 @@ const createClient = (
 			return respond();
 		},
 	);
-	const lw = new LearnWorlds({
+	const lw = new LearnWorldsClient({
 		baseUrl: "https://school.com/admin/api",
 		clientId: "cid",
 		clientSecret: "secret",

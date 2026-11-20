@@ -6,7 +6,7 @@ export type FetchFn = (
 	init?: RequestInit,
 ) => Promise<Response>;
 
-/** Already validated and normalized config (built by `LearnWorlds`). `baseUrl` always ends with `/`. */
+/** Already validated and normalized config (built by `LearnWorldsClient`). `baseUrl` always ends with `/`. */
 export interface HttpConfig {
 	baseUrl: string;
 	clientId: string;

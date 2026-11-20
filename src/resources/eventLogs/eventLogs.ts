@@ -7,7 +7,7 @@ import type { EventLog, EventLogsRequest } from "./eventLogs.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const eventLogs = await lw.eventLogs.getAll();
  * ```
  */

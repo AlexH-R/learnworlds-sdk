@@ -16,7 +16,7 @@ import type { User } from "../users/users.model.js";
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const courses = await lw.courses.getAll();
  * ```
  */

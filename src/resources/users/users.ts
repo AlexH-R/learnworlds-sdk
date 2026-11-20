@@ -20,7 +20,7 @@ import type {
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const users = await lw.users.getAll();
  * ```
  */

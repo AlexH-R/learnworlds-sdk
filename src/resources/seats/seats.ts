@@ -13,7 +13,7 @@ import type {
  *
  * @example
  * ```ts
- * const lw = new LearnWorlds({ baseUrl, clientId, clientSecret });
+ * const lw = new LearnWorldsClient({ baseUrl, clientId, clientSecret });
  * const seatOfferings = await lw.seats.getAll();
  * ```
  */
