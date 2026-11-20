@@ -10,6 +10,7 @@
 [![Node](https://img.shields.io/badge/node-%E2%89%A518.17-339933?logo=node.js&logoColor=white)](#installation)
 [![Bun](https://img.shields.io/badge/bun-supported-fbf0df?logo=bun&logoColor=black)](https://bun.sh)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](package.json)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 `@alexh-r/learnworlds-sdk` wraps the LearnWorlds REST API in small, typed resource classes. It handles the OAuth2 `client_credentials` flow for you (token caching and refresh included), builds URLs and query strings, and throws a single error type for anything that goes wrong.
 
@@ -28,6 +29,7 @@
 - [API reference](#api-reference)
 - [TypeScript](#typescript)
 - [Development](#development)
+- [License](#license)
 
 ## Installation
 
@@ -419,3 +421,6 @@ bun run build        # compile to dist/
 
 `prepublishOnly` builds and tests the package before every publish.
 
+## License
+
+[MIT](LICENSE). This project is not affiliated with LearnWorlds; see the note at the top.
