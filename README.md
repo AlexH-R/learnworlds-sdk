@@ -132,7 +132,7 @@ try {
 	if (error instanceof LearnWorldsError) {
 		error.message; // "[GET] courses/does-not-exist failed with 404"
 		error.status;  // 404 (HTTP status, when there is a response)
-		error.body;    // raw response body
+		error.body;    // parsed JSON body (or raw text if it isn't JSON)
 		error.cause;   // original error (network errors, aborts…)
 	}
 }
@@ -353,9 +353,9 @@ await lw.users.updateTags("student@example.com", { tags: ["vip"], action: "attac
 | Method | Endpoint | Description |
 | ------ | -------- | ----------- |
 | `getCourseAnalytics(id)` | `GET courses/{id}/analytics` | Analytics of a course. |
-| `getLearningActivityAnalytics(id, uid)` | `GET courses/{id}/units/{uid}` | Analytics of a learning activity. |
+| `getLearningActivityAnalytics(id, unitId)` | `GET courses/{id}/units/{unitId}` | Analytics of a learning activity. |
 | `getUserProgress(id)` | `GET users/{id}/progress` | Progress of a user in all their courses. |
-| `getUserProgressPerCourse(cid, id)` | `GET users/{id}/courses/{cid}` | Progress of a user in one course. |
+| `getUserProgressPerCourse(id, courseId)` | `GET users/{id}/courses/{courseId}` | Progress of a user in one course. |
 
 ### Event logs (`lw.eventLogs`)
 

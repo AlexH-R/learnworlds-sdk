@@ -46,18 +46,18 @@ export class ReportingResource {
 	 * course specified by the provided course id and learning activity id.
 	 *
 	 * @param id      - Course id
-	 * @param uid     - Learning activity id
+	 * @param unitId  - Learning activity id
 	 * @param signal  - AbortSignal to stop the request at any time.
 	 * @throws { LearnWorldsError }
 	 */
 	async getLearningActivityAnalytics(
 		id: string,
-		uid: string,
+		unitId: string,
 		signal?: AbortSignal,
 	): Promise<LearningActivityAnalytics> {
 		return this.#http.request(
 			"GET",
-			`courses/${encodeURIComponent(id)}/units/${encodeURIComponent(uid)}`,
+			`courses/${encodeURIComponent(id)}/units/${encodeURIComponent(unitId)}/analytics`,
 			{ signal },
 		);
 	}
@@ -66,19 +66,19 @@ export class ReportingResource {
 	 * Returns information about the user progress for the user and course specified by the provided user id and course id.
 	 * The result also includes the breakdown of user progress data per learning activity.
 	 *
-	 * @param cid     - Course id
-	 * @param id      - User id or email
-	 * @param signal  - AbortSignal to stop the request at any time
+	 * @param id        - User id or email
+	 * @param courseId  - Course id
+	 * @param signal    - AbortSignal to stop the request at any time.
 	 * @throws { LearnWorldsError }
 	 */
 	async getUserProgressPerCourse(
-		cid: string,
 		id: string,
+		courseId: string,
 		signal?: AbortSignal,
 	): Promise<UserProgressPerCourse> {
 		return this.#http.request(
 			"GET",
-			`users/${encodeURIComponent(id)}/courses/${encodeURIComponent(cid)}`,
+			`users/${encodeURIComponent(id)}/courses/${encodeURIComponent(courseId)}/progress`,
 			{ signal },
 		);
 	}
@@ -88,7 +88,7 @@ export class ReportingResource {
 	 * The result also includes the breakdown of user progress data per learning activity. The list is paginated, with a default limit of 20 course progress data per page.
 	 *
 	 * @param id      - User id or email
-	 * @param signal  - AbortSignal to stop the request at any time
+	 * @param signal  - AbortSignal to stop the request at any time.
 	 * @throws { LearnWorldsError }
 	 */
 	async getUserProgress(

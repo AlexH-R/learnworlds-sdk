@@ -95,7 +95,7 @@ export class HttpClient {
 					`[${method}] ${path} failed with ${response.status}`,
 					{
 						status: response.status,
-						body: await response.text(),
+						body: await this.#parseBody(response),
 					},
 				);
 			}
@@ -110,6 +110,15 @@ export class HttpClient {
 			}
 
 			throw error;
+		}
+	}
+
+	async #parseBody(response: Response): Promise<unknown> {
+		const text: string = await response.text();
+		try {
+			return JSON.parse(text);
+		} catch {
+			return text;
 		}
 	}
 
@@ -144,7 +153,7 @@ export class HttpClient {
 			if (!response.ok)
 				throw new LearnWorldsError("Unable to get access token", {
 					status: response.status,
-					body: await response.text(),
+					body: await this.#parseBody(response),
 				});
 			const data: AccessTokenResponse =
 				(await response.json()) as AccessTokenResponse;
