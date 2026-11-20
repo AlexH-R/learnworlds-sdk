@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - ignore-for-release
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - ignore-for-release
