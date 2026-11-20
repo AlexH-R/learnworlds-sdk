@@ -212,20 +212,20 @@ export interface UserRole {
 	id: string;
 	email: string;
 	username: string;
-	role_id: string;
+	role_id?: string;
 	user_role: {
-		id: string;
+		id?: string;
 		access_level: string;
 		name: string;
 	};
-	assigned_courses: {
+	assigned_courses?: {
 		course_id: string;
 		revenue_share_percentage: number;
 	}[];
-	assigned_seat_offering_ids: string[];
-	assigned_user_group_ids: string[];
-	assigned_segment_id: string;
-	assigned_licenses_ids: string[];
+	assigned_seat_offering_ids?: string[];
+	assigned_user_group_ids?: string[];
+	assigned_segment_id?: string;
+	assigned_licenses_ids?: string[];
 }
 export interface UserRoleModificationRequest {
 	role_id: string;

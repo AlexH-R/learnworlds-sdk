@@ -297,7 +297,7 @@ export class UsersResource {
 	async getSeats(
 		id: string,
 		signal?: AbortSignal,
-	): Promise<UserSeatOffering[]> {
+	): Promise<{ data: { seats: UserSeatOffering[] } }> {
 		return this.#http.request("GET", `users/${encodeURIComponent(id)}/seats`, {
 			signal,
 		});
