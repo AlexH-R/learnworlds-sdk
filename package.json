@@ -1,10 +1,16 @@
 {
   "name": "@alexh-r/learnworlds-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Unofficial typed TypeScript SDK for the LearnWorlds API v2",
   "author": "Alejandro Hernández Rosa",
   "license": "MIT",
-  "keywords": ["learnworlds", "sdk", "api", "typescript", "lms"],
+  "keywords": [
+    "learnworlds",
+    "sdk",
+    "api",
+    "typescript",
+    "lms"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AlexH-R/learnworlds-sdk.git"
