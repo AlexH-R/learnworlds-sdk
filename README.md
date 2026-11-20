@@ -86,17 +86,20 @@ Every resource lives on the client instance (`lw.users`, `lw.courses`, …) and 
 
 ### Pagination
 
-List endpoints return the page of items in `data` and the pagination info in `meta`:
+Paginated endpoints return a `Paginated<T>`: the page of items in `data` and the pagination info in `meta`. Most of them take a `PageQuery` (`{ page?: number }`), and some add their own filters on top.
 
 ```ts
 const { data, meta } = await lw.users.getAll({ page: 2, items_per_page: 50 });
+// data → User[]
 // meta → { page, totalItems, totalPages, itemsPerPage }
 ```
 
 To walk every page:
 
 ```ts
-const all = [];
+import type { Course } from "@alexh-r/learnworlds-sdk";
+
+const all: Course[] = [];
 let page = 1;
 let totalPages = 1;
 
@@ -137,7 +140,7 @@ try {
 
 ### Asynchronous actions
 
-Some operations (for example `lw.userProgress.complete`, `lw.userProgress.reset` and `lw.seats.delete`) run in the background and return an `AsyncTask` with a `job_id`. Follow its progress with `lw.asynchronousActions.get`:
+Some operations (`lw.userProgress.complete`, `lw.userProgress.reset`, `lw.seats.delete` and `lw.userGroups.delete`) run in the background and return an `AsyncTask` with a `job_id`. Follow its progress with `lw.asynchronousActions.get`:
 
 ```ts
 const task = await lw.userProgress.complete(userId, courseId, {
@@ -290,8 +293,27 @@ await lw.users.updateTags("student@example.com", { tags: ["vip"], action: "attac
 | `update(id, body)` | `PUT seats/{id}` | Update a seat offering. |
 | `delete(id)` | `DELETE seats/{id}` | Delete a seat offering. Returns an `AsyncTask`. |
 | `getUsers(id, query?)` | `GET seats/{id}/users` | List the members of a seat offering. |
-| `addUser(id, userId, body)` | `POST seats/{id}/users/{userId}` | Add a user to a seat offering. |
+| `addUser(id, userId)` | `POST seats/{id}/users/{userId}` | Add a user to a seat offering. |
 | `removeUser(id, userId, body)` | `DELETE seats/{id}/users/{userId}` | Remove a user from their seat (and optionally from the offering). |
+
+### User groups (`lw.userGroups`)
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| `getAll(query?)` | `GET user_groups` | List all user groups. |
+| `get(id)` | `GET user_groups/{id}` | Get a user group. |
+| `create(body)` | `POST user_groups` | Create a user group. |
+| `update(id, body)` | `PUT user_groups/{id}` | Update a user group. Each list in `products` replaces only the products of its type. |
+| `delete(id)` | `DELETE user_groups/{id}` | Delete a user group. Returns an `AsyncTask`. |
+| `getUsers(id, query?)` | `GET user_groups/{id}/users` | List the members of a user group. |
+| `addUser(id, userId)` | `POST user_groups/{id}/users/{userId}` | Add a user to a user group. |
+| `removeUser(id, userId)` | `DELETE user_groups/{id}/users/{userId}` | Remove a user from a user group. |
+
+### User roles (`lw.userRoles`)
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| `getAll()` | `GET user-roles` | List all user roles of the school, sorted by title. |
 
 ### Certificates (`lw.certificates`)
 
@@ -309,6 +331,22 @@ await lw.users.updateTags("student@example.com", { tags: ["vip"], action: "attac
 | `getResponses(id, query?)` | `GET assessments/{id}/responses` | List the responses of an assessment. |
 | `getFormResponses(id, query?)` | `GET forms/{id}/responses` | List the responses of a form. |
 | `reviewResponse(responseId, body)` | `POST assessments/scores/{responseId}/review` | Grade and give feedback on a submission. |
+
+### Community (`lw.community`)
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| `getCollections()` | `GET community/collections` | List all community collections. |
+| `getSpaces(query?)` | `GET community/spaces` | List all spaces. Filters: `page`, `items_per_page`, `access`, `collectionId`, `usages`. |
+| `createSpace(body)` | `POST community/spaces` | Create a space. `collectionId` is required for public and private spaces and not allowed for standalone ones. |
+| `getSpace(id)` | `GET community/spaces/{id}` | Get a space. |
+| `updateSpace(id, body)` | `PUT community/spaces/{id}` | Update a space. `access` can't be changed to or from `standalone`. |
+| `deleteSpace(id)` | `DELETE community/spaces/{id}` | Delete a space. |
+| `getSpaceUsers(id, query?)` | `GET community/spaces/{id}/users` | List the users of a space and their status. |
+| `addSpaceUsers(id, body)` | `POST community/spaces/{id}/users` | Add or invite users to a space (`{ uids }`). |
+| `removeSpaceUser(id, userId)` | `DELETE community/spaces/{id}/users/{userId}` | Remove a user from a space. |
+| `getPosts(query?)` | `GET community/posts` | List community posts. Filters: `page`, `items_per_page`, `course_id`, `space_id`, `user_id`, `mentions`. |
+| `getPost(id)` | `GET community/posts/{id}` | Get a post. |
 
 ### Reporting (`lw.reporting`)
 
@@ -346,6 +384,20 @@ import type { Course, User, Payment, SeatOffering } from "@alexh-r/learnworlds-s
 
 function greet(user: User) {
 	return `Hi ${user.username}`;
+}
+```
+
+Shared helper types are exported too:
+
+* `Paginated<T>`: the `{ data, meta }` shape returned by paginated endpoints.
+* `PageQuery`: the `{ page?: number }` query taken by most of them.
+* `AsyncTask` / `AsyncTaskStatus`: what background operations return and what `lw.asynchronousActions.get` reports.
+
+```ts
+import type { Paginated, User } from "@alexh-r/learnworlds-sdk";
+
+async function firstPage(): Promise<Paginated<User>> {
+	return lw.users.getAll();
 }
 ```
 
